@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>Demo with Mapbox GL JS</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+     background-image: url('loc.png');
+     background-size: cover;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     cursor: pointer;
+      }
+
+      .mapboxgl-popup {
+        max-width: 200px;
+      }
+
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+</head>
+<body>
+<div id='map'>
+    
+</div>
+
+<script>
+
+mapboxgl.accessToken ='pk.eyJ1IjoiYmVuZWhta2UiLCJhIjoiY2plYTl6b3c2MHg5ODJxbGV4aXR4Z3p6YSJ9.d3jSAbsqSmpJwyVcp9iXbw';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: [77.2090, 28.6139],
+  zoom: 3
+});
+
+
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [ 76.964505, 8.535571]
+      },
+      properties: {
+        title: 'Kran Consulting Pvt Limited',
+        description: 'peroorkada,Trivandrum ,India'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [91.795339, 26.130154]
+      },
+      properties: {
+        title: 'Kran Consulting Pvt Limited',
+        description: 'guwahati'	
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [77.207870, 28.610710]
+      },
+      properties: {
+        title:'Kran Consulting Pvt Limited',
+        description: 'Delhi'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [85.825229, 20.294563]
+      },
+      properties: {
+        title: 'Kran Consulting Pvt Limited',
+        description: 'BHUBANESWAR'
+      }
+    }
+  ]
+};
+// add markers to map
+for (const feature of geojson.features) {
+  
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+.setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`)).addTo(map);
+}
+
+map.on('load', () => {
+// Add a data source containing GeoJSON data.
+map.addSource('kerala', {
+'type': 'geojson',
+'data': {
+'type': 'Feature',
+'geometry': {
+'type': 'Polygon',
+// These coordinates outline Maine.
+'coordinates': [
+[
+[
+              74.85551737786153,
+              12.770519437353087
+            ],
+            [
+              75.20356665401113,
+              12.032058866003709
+            ],
+            [
+              75.76897286732944,
+              11.31206096432257
+            ],
+            [
+              75.88683411044101,
+              10.761099886280832
+            ],
+            [
+              76.19910364985924,
+              10.146754242858322
+            ],
+            [
+              76.3026870643489,
+              9.429326365107073
+            ],
+            [
+              77.08232612511682,
+              8.305622714037014
+            ],
+            [
+              77.26450700603152,
+              8.472542692132706
+            ],
+            [
+              77.16021580944482,
+              8.718736828247074
+            ],
+            [
+              77.25139433703924,
+              8.859968568603634
+            ],
+            [
+              77.16028531696838,
+              9.00225075807063
+            ],
+            [
+              77.36938278140224,
+              9.4766405837061
+            ],
+            [
+              77.1741048527104,
+              9.618916400135731
+            ],
+            [
+              77.2524806154592,
+              9.69548756780101
+            ],
+            [
+              77.22750844738943,
+              10.093025219893633
+            ],
+            [
+              77.21526948155963,
+              10.323704509829597
+            ],
+            [
+              76.94098036443188,
+              10.209366448243713
+            ],
+            [
+              76.81088434170783,
+              10.286561465403096
+            ],
+            [
+              76.87748441958252,
+              10.760210682022915
+            ],
+            [
+              76.73433143485846,
+              10.888583765324256
+            ],
+            [
+              76.7218483877744,
+              11.068021240803503
+            ],
+            [
+              76.68295083634769,
+              11.157822226263505
+            ],
+            [
+              76.46102492478786,
+              11.209332428661355
+            ],
+            [
+              76.53970273087896,
+              11.324724185096386
+            ],
+            [
+              76.25249196954019,
+              11.517441594510643
+            ],
+            [
+              76.44912199577061,
+              11.697307046516528
+            ],
+            [
+              76.10887931659482,
+              11.890418084703512
+            ],
+            [
+              75.58396324224543,
+              12.148265866521257
+            ],
+            [
+              75.30593473990479,
+              12.575332976254671
+            ],
+            [
+              74.85551737786153,
+              12.770519437353087
+            ]
+]
+]
+}
+}
+});
+ 
+// Add a new layer to visualize the polygon.
+map.addLayer({
+'id': 'kerala',
+'type': 'fill',
+'source': 'kerala', // reference the data source
+'layout': {},
+'paint': {
+'fill-color': '#0080ff', // blue color fill
+'fill-opacity': 0.5
+}
+});
+// Add a black outline around the polygon.
+map.addLayer({
+'id': 'outline',
+'type': 'line',
+'source': 'kerala',
+'layout': {},
+'paint': {
+'line-color': '#000',
+'line-width': 2
+}
+});
+});
+</script>
+
+</body>
+</html>
